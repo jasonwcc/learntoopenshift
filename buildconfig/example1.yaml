@@ -1,0 +1,21 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: php-example
+spec:
+  runpolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: https://gitlab.com/jasonwcc.my/learntophp/hello-world
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: php:7.3
+  output:
+    to:
+      kind: ImageStreamTag
+      name: php-example:latest
