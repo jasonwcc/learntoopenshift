@@ -14,7 +14,7 @@ def get_app_debug_info():
 @app.route('/')
 def welcome():
     return {
-        'msg': 'Hello World! This is a simple Python app using Flask!',
+        'msg': 'Hello World! from learntoOpenShift!',
         'endpoints': ['/', '/ping', '/debug', '/debug/ui']
     }
 
@@ -46,9 +46,9 @@ def debug_ui():
 
 @app.errorhandler(404)
 def not_found(e):
-    return {'err': 'Not found!'}, 404
+    return {'Error': 'Specified endpoint does not exists!'}, 404
 
 
 if __name__ == '__main__':
-    port = os.environ.get('PORT', 5001)
+    port = os.environ.get('PORT', 8080)
     app.run(debug=True, host='0.0.0.0', port=port)
