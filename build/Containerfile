@@ -1,17 +1,20 @@
-FROM registry.access.redhat.com/ubi8/ubi8:8.0
+FROM registry.access.redhat.com/ubi8
 
 MAINTAINER RedHat Training <jasonwcc@yahoo.com>
 
 ENV DOCROOT=/var/www/html
 
-RUN yum install -y --no-docs httpd 
-RUN yum clean all -y
-RUN echo "Hello from httpd-parent container!" > ${DOCROOT}/index.html
+LABEL VERSION="1.0" \
+      description="Its exam resources"
+
+ADD scripts ./
+
+RUN yum install -y --nodocs httpd && yum clean all -y && echo "Hello from httpd-parent container!" > ${DOCROOT}/index.html && rm -rf /run/httpd && mkdir /run/httpd
 
 EXPOSE 80
 
-RUN rm -rf /run/httpd
-RUN mkdir /run/httpd
+ONBUILD COPY src ./
 
 USER root
+
 CMD /usr/sbin/httpd -DFOREGROUND

@@ -1,0 +1,22 @@
+FROM registry.access.redhat.com/ubi8
+
+MAINTAINER RedHat Training <jasonwcc@yahoo.com>
+
+ENV DOCROOT=/var/www/html
+
+LABEL VERSION="1.0"
+LABEL description="Its exam resources"
+
+RUN yum install -y --nodocs httpd 
+RUN yum clean all -y
+RUN echo "Hello from httpd-parent container!" > ${DOCROOT}/index.html
+
+EXPOSE 80
+
+RUN rm -rf /run/httpd
+RUN mkdir /run/httpd
+
+ADD scripts .
+USER root
+
+CMD /usr/sbin/httpd -DFOREGROUND
