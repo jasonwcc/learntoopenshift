@@ -1,0 +1,17 @@
+FROM registry.access.redhat.com/ubi8/ubi8:8.0
+
+MAINTAINER RedHat Training <jasonwcc@yahoo.com>
+
+ENV DOCROOT=/var/www/html
+
+RUN yum install -y --no-docs httpd 
+RUN yum clean all -y
+RUN echo "Hello from httpd-parent container!" > ${DOCROOT}/index.html
+
+EXPOSE 80
+
+RUN rm -rf /run/httpd
+RUN mkdir /run/httpd
+
+USER root
+CMD /usr/sbin/httpd -DFOREGROUND
