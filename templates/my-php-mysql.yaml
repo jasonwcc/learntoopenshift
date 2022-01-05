@@ -6,8 +6,6 @@ labels:
 metadata:
   annotations:
     iconClass: icon-php
-    openshift.io/display-name: CakePHP + MySQL (Ephemeral)
-    openshift.io/documentation-url: https://github.com/sclorg/cakephp-ex
     tags: quickstart,php,cakephp
     template.openshift.io/bindable: "false"
   labels:
@@ -121,6 +119,8 @@ objects:
             value: ${DATABASE_ENGINE}
           - name: DATABASE_NAME
             value: ${DATABASE_NAME}
+          - name: HELLO_MESSAGE
+            value: ${HELLO_MESSAGE}
           - name: DATABASE_USER
             valueFrom:
               secretKeyRef:
@@ -130,16 +130,6 @@ objects:
             valueFrom:
               secretKeyRef:
                 key: database-password
-                name: ${NAME}
-          - name: CAKEPHP_SECRET_TOKEN
-            valueFrom:
-              secretKeyRef:
-                key: cakephp-secret-token
-                name: ${NAME}
-          - name: CAKEPHP_SECURITY_SALT
-            valueFrom:
-              secretKeyRef:
-                key: cakephp-security-salt
                 name: ${NAME}
           - name: OPCACHE_REVALIDATE_FREQ
             value: ${OPCACHE_REVALIDATE_FREQ}
@@ -306,6 +296,7 @@ parameters:
   displayName: Application Hostname
   name: APPLICATION_DOMAIN
   required: true
+  value: someone.example.com
 - description: Github trigger secret.  A difficult to guess string encoded as part of the webhook URL.  Not encrypted.
   displayName: GitHub Webhook Secret
   from: '[a-zA-Z0-9]{40}'
@@ -353,9 +344,6 @@ parameters:
   displayName: MySQL authentication plugin
   name: MYSQL_DEFAULT_AUTHENTICATION_PLUGIN
   value: mysql_native_password
-- displayName: hello audience
-  name: HELLO_AUDIENCE
-  value: Bonjour
 - displayName: hello message
   name: HELLO_MESSAGE
-  value: Engineers
+  value: Bonjour
