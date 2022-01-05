@@ -7,13 +7,13 @@ ENV DOCROOT=/var/www/html
 LABEL VERSION="1.0" \
       description="Its exam resources"
 
-ADD scripts ./
-
 RUN yum install -y --nodocs httpd && yum clean all -y && echo "Hello from httpd-parent container!" > ${DOCROOT}/index.html && rm -rf /run/httpd && mkdir /run/httpd
 
-EXPOSE 80
+ADD scripts .
 
 ONBUILD COPY src ./
+
+EXPOSE 80
 
 USER root
 
