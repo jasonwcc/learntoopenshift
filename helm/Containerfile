@@ -1,0 +1,7 @@
+FROM docker.io/library/httpd
+
+COPY src/ htdocs
+
+EXPOSE 8080
+
+CMD /usr/local/apache2/bin/httpd -DFOREGROUND
