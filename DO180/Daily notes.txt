@@ -383,3 +383,100 @@ Object-based
 - Rest API
 
 
+oc run - pod
+oc create deployment
+oc create service
+oc create dc
+oc create
+
+Deployment/DC
+- rolling update
+- RS (minus rolling update)
+pods --> Replication Controllers
+- rolling update-
+- scaling + replication
+vs
+ReplicaSets
+
+vs
+StatefulSets
+
+RH Container Catalog
+
+Software collection library (SCL)
+github  web server using openshift
+
+Manually
+- YAML file
+- oc scale deployment/name --replicas=5
+- oc autoscale deployment/name --min --max --cpu
+  HPA - cpu/memory
+api.ocp4.example.com
+
+trainocate.com --> node1 (SG)
+trainocate.com/videos --> node2 (US)
+
+Cap Theorem
+NFS (filesystem + protocol)
+vs
+SMBv1 SMBv3
+- protocol
+vs
+CIFS \\
+- filesystem
+
+SAMBA
+- opensource package installed in linux
+- can connect to CIFS(SMB) on Windows
+
+Object-based (IP)
+- Rest API  : get / put / post / patch
+- AWS S3 , StorageGrid
+
+Advanced Scheduling
+- Long list of predicates: https://docs.openshift.com/container-platform/3.11/admin_guide/scheduling/scheduler.html#available-predicates
+- P ority functions: https://docs.openshift.com/container-platform/3.11/admin_guide/scheduling/scheduler.html#available-priority-functions
+
+
+
+
+
+Fault Tolerance
+vs
+High Available 
+- node (cpu,disk
+vs
+Disaster Recovery
+
+taint - dirty (master)
+
+K8s
+- look cpu from 1 core / milicore
+
+
+1 socket = 20 (each core @ 4GHz)
+20 --> openshift = 20000 milicores
+
+appA - 400MHz
+oc .... 1 core = 1000 milicore = 4GHz
+400m
+
+vcpu 
+
+Image Streams
+Image Stream Tags
+Image Stream Tags Aliases
+Image Trigger
+Openshift installation
+- openshift namespace
+  -- IS
+- internal openshift registry
+
+oc get rs
+oc edit rs/re......
+
+
+
+
+
+
