@@ -49,3 +49,38 @@ data:
             }
         }
     }
+---
+apiVersion: v1
+imagePullSecrets:
+- name: testsa-dockercfg-7hskf
+kind: ServiceAccount
+metadata:
+  annotations:
+    openshift.io/internal-registry-pull-secret-ref: testsa-dockercfg-7hskf
+  creationTimestamp: "2025-07-12T02:05:54Z"
+  name: testsa
+  namespace: demo-nginx
+  resourceVersion: "51768"
+  uid: d74d4306-3715-47d2-9b8f-181799f436e0
+secrets:
+- name: testsa-dockercfg-7hskf
+---
+kind: SecurityContextConstraints
+apiVersion: security.openshift.io/v1
+metadata:
+  name: scc-admin
+allowPrivilegedContainer: true
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+fsGroup:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+users:
+- testsa   # service account
+requiredDropCapabilities:  # disallow these docker capabilities
+- KILL
+- MKNOD
+- SYS_CHROOT

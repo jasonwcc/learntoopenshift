@@ -11,6 +11,8 @@ spec:
       labels:
         name: nginx
     spec:
+      serviceAccount: testsa
+      serviceAccountName: testsa
       containers:
       - name: nginx
         image: nginx:latest
